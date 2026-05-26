@@ -1,0 +1,31 @@
+name: Greetings
+
+on:
+  pull_request_target:
+    types: [opened]
+  issues:
+    types: [opened]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            👋 Welcome to FreshScan AI! Thank you for opening an issue.
+            
+            Our maintainers will review this shortly. In the meantime, please ensure your report includes all necessary context and reproduction steps (if it's a bug). If this is a security issue, please close this and follow the `SECURITY.md` protocol.
+          pr-message: |
+            🎉 Thank you for your Pull Request! We're thrilled to have your contribution to FreshScan AI.
+            
+            Before we review, please make sure you have:
+            - Followed the `CONTRIBUTING.md` guidelines.
+            - Ensured all automated CI checks (linting, tests) are passing.
+            - Checked that your commit messages follow the Conventional Commits format.
+            
+            A maintainer will review your code as soon as possible!

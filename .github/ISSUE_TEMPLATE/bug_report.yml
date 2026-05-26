@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         > ⚠️ **Is this a security vulnerability?**
-        > Do NOT use this form. Read [SECURITY.md](../SECURITY.md) and report it privately via email instead.
+        > Do NOT use this form. Read [SECURITY.md](https://github.com/jpdevhub/FreshScanAi/blob/main/SECURITY.md) and report it privately via email instead.
         > Public disclosure of a security issue before a fix is shipped puts every user at risk.
 
         ---

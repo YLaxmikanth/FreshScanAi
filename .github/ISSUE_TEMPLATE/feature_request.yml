@@ -5,12 +5,12 @@ body:
   - type: markdown
     attributes:
       value: |
-        > ⚠️ **Is this a security concern?** Use [SECURITY.md](../SECURITY.md) instead.
+        > ⚠️ **Is this a security concern?** Use [SECURITY.md](https://github.com/jpdevhub/FreshScanAi/blob/main/SECURITY.md) instead.
 
         **Read before opening:**
         - Features require maintainer approval before implementation work begins.
         - A PR opened for a feature without a linked, approved issue will be closed.
-        - Check the [Roadmap in DOCUMENTATION.md](../DOCUMENTATION.md#14-future-roadmap) first — if your idea is already planned, comment on the existing tracking issue instead.
+        - Check the [Roadmap in DOCUMENTATION.md](https://github.com/jpdevhub/FreshScanAi/blob/main/DOCUMENTATION.md#14-future-roadmap) first — if your idea is already planned, comment on the existing tracking issue instead.
   - type: textarea
     id: problem
     attributes:

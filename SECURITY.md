@@ -12,7 +12,7 @@ Only the latest commit on `main` receives security fixes.
 
 Report vulnerabilities by **email only**:
 
-```
+```text
 karanrathore23@zohomail.in
 ```
 

@@ -71,7 +71,7 @@ Rules:
 
 Follow the [Conventional Commits](https://www.conventionalcommits.org/) specification exactly.
 
-```
+```text
 <type>(<scope>): <summary>
 ```
 
@@ -99,7 +99,7 @@ Follow the [Conventional Commits](https://www.conventionalcommits.org/) specific
 
 **Examples:**
 
-```
+```text
 feat(scanner): add live confidence threshold display
 fix(auth): handle OAuth redirect loop on mobile Safari
 test(inference): add unit tests for temperature scaling edge cases
