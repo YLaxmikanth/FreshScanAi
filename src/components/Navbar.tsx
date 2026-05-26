@@ -19,7 +19,7 @@ export default function Navbar() {
         .then(p => { if (!ignore) setProfile(p); })
         .catch(console.error);
     } else {
-      if (!ignore) setProfile(null);
+      Promise.resolve().then(() => { if (!ignore) setProfile(null); });
     }
     return () => { ignore = true; };
   }, [loggedIn]);

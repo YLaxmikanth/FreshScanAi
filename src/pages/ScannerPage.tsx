@@ -27,13 +27,14 @@ export default function ScannerPage() {
     if (!cameraActive || uploadPreviewUrl) return;
 
     let cancelled = false;
+    const currentVideo = videoRef.current;
 
     async function startCamera() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode } });
         if (cancelled) { stream.getTracks().forEach(t => t.stop()); return; }
         streamRef.current = stream;
-        if (videoRef.current) videoRef.current.srcObject = stream;
+        if (currentVideo) currentVideo.srcObject = stream;
       } catch (err) {
         if (!cancelled) console.error('Camera error:', err);
       }
@@ -44,7 +45,7 @@ export default function ScannerPage() {
       cancelled = true;
       streamRef.current?.getTracks().forEach(t => t.stop());
       streamRef.current = null;
-      if (videoRef.current) videoRef.current.srcObject = null;
+      if (currentVideo) currentVideo.srcObject = null;
     };
   }, [facingMode, cameraActive, uploadPreviewUrl]);
 
