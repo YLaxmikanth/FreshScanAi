@@ -8,7 +8,7 @@
     <br />
     <a href="https://github.com/jpdevhub/FreshScanAi/issues/new?labels=bug">Report Bug</a>
     &middot;
-    <a href="https://github.com/jpdevhub/FreshScanAi/issues/new?labels=enhancement">Request Feature</a>
+    <a href="https://github.com/jpdevhub/FreshScanAi/issues/new?labels=feature">Request Feature</a>
   </p>
 </div>
 

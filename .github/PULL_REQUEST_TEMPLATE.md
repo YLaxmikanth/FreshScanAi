@@ -1,18 +1,15 @@
-## Summary
-<!-- What does this PR do? -->
+<!--
+  Please ensure you have read CONTRIBUTING.md before opening a PR.
+-->
 
-## Motivation
-<!-- Why is this change needed? Link the related issue. Closes #<issue> -->
+## Description
 
-## Implementation Notes
-<!-- How did you approach the problem? Any trade-offs or decisions worth noting? -->
-
-## Screenshots (if applicable)
-<!-- Before / after screenshots for UI changes -->
+<!-- Provide a clear description of what this PR does and why it is needed. Link to the relevant issue (e.g., Closes #123). If it includes UI changes, please include screenshots here. -->
 
 ## Checklist
-- [ ] `npm run lint` passes
-- [ ] Backend tests pass (`python -m pytest backend/`)
-- [ ] No `.env` files or credentials committed
-- [ ] Branch is up to date with `main`
-- [ ] PR description is complete
+
+- [ ] `npm run lint` passes with no errors
+- [ ] `npm run build` compiles without TypeScript errors
+- [ ] `python -m pytest` passes (including new tests I added)
+- [ ] No `.env` files, API keys, secrets, model weights, or `__pycache__` in this diff
+- [ ] Branch is rebased on `main`, not merged

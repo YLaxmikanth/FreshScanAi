@@ -60,14 +60,10 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: |
-          pip install fastapi uvicorn supabase Pillow numpy \
-                      python-dotenv python-multipart httpx pytest
+        run: pip install -r requirements-ci.txt
 
       - name: Lint with Ruff
-        run: |
-          pip install ruff
-          ruff check . --config ruff.toml
+        run: ruff check . --config ruff.toml
 
       - name: Run tests
         run: python -m pytest tests/test_ci.py -v

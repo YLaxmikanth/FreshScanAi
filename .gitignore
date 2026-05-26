@@ -39,6 +39,7 @@ __pycache__
 *.pyo
 *.pyd
 *.egg-info
+._*
 
 # Vite internals
 .vite

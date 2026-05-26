@@ -5,7 +5,14 @@ body:
   - type: markdown
     attributes:
       value: |
+        > ⚠️ **Is this a security vulnerability?**
+        > Do NOT use this form. Read [SECURITY.md](../SECURITY.md) and report it privately via email instead.
+        > Public disclosure of a security issue before a fix is shipped puts every user at risk.
+
+        ---
+
         Before submitting, search open issues to avoid duplicates.
+        Vague reports without reproduction steps will be closed.
 
   - type: textarea
     id: description
