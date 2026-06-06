@@ -11,6 +11,7 @@ import ResultsPage from './pages/ResultsPage';
 import Leaderboard from './pages/Leaderboard';
 import PostHogPageView from './components/PostHogPageView';
 import NotFound from './pages/NotFound';
+import PublicReport from "./pages/PublicReport";
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
           
           {/* Catch-all route for broken links/404s */}
           <Route path="*" element={<NotFound />} />
+          <Route path="/report/:id" element={<PublicReport />} />
         </Route>
       </Routes>
     </BrowserRouter>

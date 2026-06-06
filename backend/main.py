@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 from contextlib import asynccontextmanager
 from typing import Optional
 
+
 # Load .env file if present (python-dotenv)
 try:
     from dotenv import load_dotenv
@@ -90,6 +91,7 @@ async def lifespan(app: FastAPI):
         )
     yield
 
+from fastapi import FastAPI
 
 app = FastAPI(title="FreshScan AI", version="1.1.0", lifespan=lifespan)
 
@@ -365,6 +367,23 @@ async def get_me(current_user=Depends(get_current_user)):
             or current_user.user_metadata.get("picture")
         ),
     }
+
+
+@app.get("/api/v1/public/report/{scan_id}")
+async def get_public_report(scan_id: str):
+    try:
+        resp = _db().table("scans").select("*").eq("id", scan_id).execute()
+        if not resp.data:
+            raise HTTPException(status_code=404, detail="Scan not found")
+        return {"success": True, "scan": resp.data[0]}
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc))
+
+# ── MAIN ──────────────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
 
 # ── SCAN ──────────────────────────────────────────────────────────────────────

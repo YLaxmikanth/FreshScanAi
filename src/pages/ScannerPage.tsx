@@ -16,6 +16,7 @@ export default function ScannerPage() {
   const [uploadPreviewUrl, setUploadPreviewUrl] = useState<string | null>(null);
   // Controls whether the camera stream is active
   const [cameraActive, setCameraActive] = useState(true);
+  const [copied, setCopied] = useState(false);
 
   const videoRef      = useRef<HTMLVideoElement>(null);
   const progressRef   = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -350,7 +351,23 @@ export default function ScannerPage() {
                 </button>
               </div>
             )}
-
+             {scanComplete && freshness !== null && freshness >= 85 && (
+               <div className="flex flex-col gap-3 mt-1">
+                 <button
+                   onClick={() => {
+                     const scanId = sessionStorage.getItem('lastScanId');
+                     if (scanId) {
+                       navigator.clipboard.writeText(`${window.location.origin}/report/${scanId}`);
+                       setCopied(true);
+                       setTimeout(() => setCopied(false), 2000);
+                     }
+                   }}
+                   className="w-full py-3 bg-secondary text-on-primary font-[family-name:var(--font-display)] font-bold text-sm tracking-wider cursor-pointer border-none transition-colors hover:brightness-110 flex items-center justify-center gap-2"
+                 >
+                   {copied ? 'COPIED TO CLIPBOARD' : 'SHARE GRADE-A REPORT'}
+                 </button>
+               </div>
+             )}
             <StatusTerminal
               messages={['MODEL: STREAM_DUAL', 'DEVICE: ON_EDGE', 'LATENCY: <50ms']}
               className="justify-center"
