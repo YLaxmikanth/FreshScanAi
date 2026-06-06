@@ -122,6 +122,20 @@ app.add_middleware(
 )
 
 
+# ── Health check ──────────────────────────────────────────────────────────────
+# HF Spaces polls GET /?logs=container — without this route, FastAPI returns
+# 404 and HF Spaces may mark the container as unhealthy.
+
+@app.get("/")
+async def health_check():
+    return {
+        "status": "healthy",
+        "service": "FreshScan AI",
+        "version": "1.1.0",
+        "models_loaded": _models_loaded,
+    }
+
+
 # ── Domain helpers ────────────────────────────────────────────────────────────
 
 

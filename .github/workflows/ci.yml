@@ -75,3 +75,32 @@ jobs:
           SUPABASE_SERVICE_KEY: ""
           FRONTEND_URL: http://localhost:5173
           API_BASE_URL: http://localhost:8000
+
+  deploy-backend-to-hf-spaces:
+    name: Deploy Backend → HF Spaces
+    # Only deploy on push to main, not on PRs
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: backend-lint-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0      # full history needed for subtree push
+          lfs: true
+
+      - name: Configure git
+        run: |
+          git config user.email "ci@freshscan.ai"
+          git config user.name "FreshScan CI"
+
+      - name: Push backend/ → HF Spaces
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          # Push only the backend/ subfolder to the HF Spaces repo.
+          # The HF Space (karansingh12/freshscan-api) expects the FastAPI
+          # app files at the repo root, so we subtree-push backend/ → root.
+          git subtree push \
+            --prefix=backend \
+            https://karansingh12:${HF_TOKEN}@huggingface.co/spaces/karansingh12/freshscan-api \
+            main
