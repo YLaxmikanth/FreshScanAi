@@ -3,6 +3,7 @@ import { isAuthenticated } from '../lib/api';
 import { Zap, Eye, MapPin, ScanLine, Target, Award, ChevronDown } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
 import { useState, useEffect } from 'react';
+import BackToTopButton from '../components/BackToTopButton';
 
 const features = [
   {
@@ -77,7 +78,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="relative">
+    <div id="landing-top" className="relative">
       {/* ── HERO ── */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 md:px-16 lg:px-24 py-20 overflow-hidden text-center">
         <div className="relative z-10 max-w-5xl mx-auto">
@@ -279,6 +280,7 @@ export default function LandingPage() {
           </Link>
         </div>
       </section>
+      <BackToTopButton />
     </div>
   );
 }
