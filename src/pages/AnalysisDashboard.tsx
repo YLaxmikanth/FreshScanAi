@@ -6,7 +6,6 @@ import StatusTerminal from '../components/StatusTerminal';
 import { api } from '../lib/api';
 import type { ScanResult } from '../lib/types';
 import ScanSkeleton from "../components/shared/ScanSkeleton";
-
 const BIOMARKER_META = {
   gill_saturation: { label: 'Gill Saturation', icon: Droplets },
   corneal_clarity: { label: 'Corneal Clarity', icon: EyeIcon },
@@ -22,19 +21,20 @@ function gradeColor(grade: string) {
 }
 
 export default function AnalysisDashboard() {
- 
   const [params] = useSearchParams();
   const [scan, setScan] = useState<ScanResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
+
     async function load() {
       setLoading(true);
-      setError('');
+      setError("");
+
       try {
-        const idParam = params.get('id');
-        const lastId = sessionStorage.getItem('lastScanId');
+        const idParam = params.get("id");
+        const lastId = sessionStorage.getItem("lastScanId");
         const targetId = idParam || lastId;
 
         const res = targetId
@@ -43,18 +43,37 @@ export default function AnalysisDashboard() {
 
         setScan(res.scan);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load scan data.');
+        const offlineData = sessionStorage.getItem("offlineScanResult");
+
+        if (offlineData) {
+          try {
+            const parsed = JSON.parse(offlineData);
+
+            if (parsed?.freshness_index != null) {
+              setScan(parsed);
+              setLoading(false); 
+              return;
+            }
+          } catch (e) {
+            console.warn("Failed to parse offline scan result", e);
+          }
+        }
+
+        setError(
+          err instanceof Error ? err.message : "Failed to load scan data."
+        );
       } finally {
-      setLoading(false);
+        setLoading(false);
       }
     }
+
     load();
   }, [params]);
 
   // ── Loading state ────────────────────────────────────────────────────────
-if (loading) {
-  return <ScanSkeleton />;
-}
+  if (loading) {
+    return <ScanSkeleton />;
+  }
 
   // ── Error state ──────────────────────────────────────────────────────────
   if (error || !scan) {
