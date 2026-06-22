@@ -72,7 +72,7 @@ async function safeFetch(
     const res = await fetch(input, init);
     return await handleResponse(res, options);
   } catch (error) {
-    if (error instanceof TypeError && !options?.silent) {
+    if (!options?.silent && (error instanceof TypeError || error?.toString().includes("fetch"))) {
       toast.error(
         "Unable to connect to the server. Please check your internet connection.",
       );
