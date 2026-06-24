@@ -133,10 +133,13 @@ export interface EdgeInferenceMeta {
 export const api = {
   loginUrl: async (turnstileToken?: string): Promise<string> => {
     if (turnstileToken) {
-      const response = await apiFetch<{ redirect_url: string }>('/api/v1/auth/login/google', {
-        method: 'POST',
-        body: JSON.stringify({ turnstile_token: turnstileToken }),
-      });
+      const response = await apiFetch<{ redirect_url: string }>(
+        "/api/v1/auth/login/google",
+        {
+          method: "POST",
+          body: JSON.stringify({ turnstile_token: turnstileToken }),
+        },
+      );
       return response.redirect_url;
     }
 
